@@ -1,0 +1,203 @@
+why funtion sortlist not run
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  *{
+    padding: 0;
+    margin: 0;
+  }
+  img{
+    width: 300px;
+  }
+  .slides{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .slide{
+    position: relative;
+    font-size:xx-large;
+    color: rgb(255, 0, 0);
+  }
+  .next , .prev{
+    top: 50%;
+    font-size: medium;
+  }
+  .name{
+    position: absolute;
+  }
+  .value{
+    top: 50%;
+    position: absolute;
+  }
+  .button{
+    position: absolute;
+    left: 0;
+    height: 25%;
+    bottom: 0;
+    width: 50%;
+}
+.bar{
+  width: 100px;
+  height: 100px;
+  font-size: xx-large;
+}
+  
+</style>
+<body>
+  <div class="bar">0</div>
+<div class="slideshow">
+  <input type="text" id="filterInput" onkeyup="filterItems()" placeholder="Search for names..">
+<button onclick="sortlist()">sortlist()</button>
+<button onclick="sortlistnumber()">sortlistnumber()</button>
+
+<div class="slides">
+    <div class="slide">
+      <div class="name">laptop lg</div>
+      <div class="value">46000$</div>
+      <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5b7664c6-ffcd-4d20-8a4d-5bc0ee0ccb80/dfo1esx-df940da3-48bf-4709-b5e5-570c1344b028.png/v1/fill/w_1095,h_730,q_70,strp/spartan_warrior_by_rylyn84_dfo1esx-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI4MCIsInBhdGgiOiJcL2ZcLzViNzY2NGM2LWZmY2QtNGQyMC04YTRkLTViYzBlZTBjY2I4MFwvZGZvMWVzeC1kZjk0MGRhMy00OGJmLTQ3MDktYjVlNS01NzBjMTM0NGIwMjgucG5nIiwid2lkdGgiOiI8PTE5MjAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.euBX2vDeN90657K5pR9Ixxbj2NriOBz-ADuLl4O6b4A">
+      <button class="button" onclick="addcart()">mua</button>
+    </div>
+    <div class="slide">
+      <div class="name">marbook apple</div>
+      <div class="value">4500$</div>
+      <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5b7664c6-ffcd-4d20-8a4d-5bc0ee0ccb80/dflxtzh-1ed043cf-6e71-472b-a711-962c5aaca55f.png/v1/fill/w_1110,h_720,q_70,strp/gil_galad_wielding_aeglos_by_rylyn84_dflxtzh-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI0NSIsInBhdGgiOiJcL2ZcLzViNzY2NGM2LWZmY2QtNGQyMC04YTRkLTViYzBlZTBjY2I4MFwvZGZseHR6aC0xZWQwNDNjZi02ZTcxLTQ3MmItYTcxMS05NjJjNWFhY2E1NWYucG5nIiwid2lkdGgiOiI8PTE5MjAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.-LQU4A2lC0sEttDi5-T4DkyReJxGWfTGi8taCgdd56g">
+      <button class="button" onclick="addcart()">mua</button>
+    </div>
+    <div class="slide">
+      <div class="name">laptop asus</div>
+      <div class="value">40500$</div>
+      <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5b7664c6-ffcd-4d20-8a4d-5bc0ee0ccb80/dfobu78-97927632-9ec0-486e-86d7-f822c6d5a5f4.png/v1/fill/w_1095,h_730,q_70,strp/theoden__king_of_rohan_by_rylyn84_dfobu78-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI4MCIsInBhdGgiOiJcL2ZcLzViNzY2NGM2LWZmY2QtNGQyMC04YTRkLTViYzBlZTBjY2I4MFwvZGZvYnU3OC05NzkyNzYzMi05ZWMwLTQ4NmUtODZkNy1mODIyYzZkNWE1ZjQucG5nIiwid2lkdGgiOiI8PTE5MjAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.AVHN-kbNvmb09kZCBQoCg4pGXI-xxpjVH0WAUXmm2KI">
+      <button class="button" onclick="addcart()">mua</button>
+    </div>
+    <div class="slide">
+      <div class="name">tv lg</div>
+      <div class="value">40100$</div>
+      <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5b7664c6-ffcd-4d20-8a4d-5bc0ee0ccb80/dfqfx00-bbe094f6-cb7d-4b46-99b3-bf61d7526a39.png/v1/fill/w_1182,h_676,q_70,strp/tulkas_the_strong_by_rylyn84_dfqfx00-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTA5OCIsInBhdGgiOiJcL2ZcLzViNzY2NGM2LWZmY2QtNGQyMC04YTRkLTViYzBlZTBjY2I4MFwvZGZxZngwMC1iYmUwOTRmNi1jYjdkLTRiNDYtOTliMy1iZjYxZDc1MjZhMzkucG5nIiwid2lkdGgiOiI8PTE5MjAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.p0T3YEd8BFl0C8OnVyxaq--plCy50Ne9KoRmtysAh5A">
+      <button class="button" onclick="addcart()">mua</button>
+    </div>
+    <div class="slide">
+      <div class="name">tv xiami</div>
+      <div class="value">455000$</div>
+      <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7e5892fa-5960-4451-9cbe-9c3dbd02478f/d2e64wu-dfe6e48b-e8ca-4e77-9c33-21b80d0236be.jpg/v1/fit/w_780,h_614,q_70,strp/chaos_legion_by_hgjart_d2e64wu-414w-2x.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjE0IiwicGF0aCI6IlwvZlwvN2U1ODkyZmEtNTk2MC00NDUxLTljYmUtOWMzZGJkMDI0NzhmXC9kMmU2NHd1LWRmZTZlNDhiLWU4Y2EtNGU3Ny05YzMzLTIxYjgwZDAyMzZiZS5qcGciLCJ3aWR0aCI6Ijw9NzgwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.fQj9viPBQqOoDnCbW-xk38XvU5I-S4EBJpp5h4nhJIs">
+      <button class="button" onclick="addcart()">mua</button>
+    </div>
+    <div class="slide">
+      <div class="name">phone xiomi</div>
+      <div class="value">10$</div>
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXNk4tPXMNL7xrrxkFJG6Mq8_VBhaRvfAB7w&usqp=CAU">
+      <button class="button" onclick="addcart()">mua</button>
+    </div>
+    <div class="slide">
+      <div class="name">phone apple</div>
+      <div class="value">90$</div>
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_onD4GcD08s2QOdraAiUvAtZEfZ1EbMVdrQ&usqp=CAU">
+      <button class="button" onclick="addcart()">mua</button>
+    </div>
+    <div class="slide">
+      <div class="name">speaker lg</div>
+      <div class="value">4677$</div>
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjQMhrln4-E-jvXEtZOIyZroCCU0n9ciP8gYEGoCKqy4xAYMTV61PGxmRtDinpsyOVWg8&usqp=CAU">
+      <button class="button" onclick="addcart()">mua</button>
+    </div>
+    <div class="slide">
+      <div class="name">apple speaker</div>
+      <div class="value">40300$</div>
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeyP3jvVgJAbsKrM0jxp8vjpbNLJu6q_QdmSrArqE0OBQg7c3936WKfL6LlAUI39jZOOs&usqp=CAU">
+      <button class="button" onclick="addcart()">mua</button>
+    </div>
+  </div>
+</div>
+<div class="cart"></div>
+<script>
+  let products = [
+    {
+      id : 1,
+      Image :src 
+      name : 'laptop dell',
+    }
+  ];
+ // Get references to DOM elements
+const filterInput = document.getElementById("filterInput");
+
+const itemList = document.querySelector('.slides');
+const slide = document.querySelectorAll(".slide");
+const items = document.querySelectorAll(".name");
+const number = document.querySelectorAll(".value");
+
+const textcart = document.querySelector('.bar');
+
+const araynumber = Array.from(number);
+const aray = Array.from(slide)
+console.log(aray);
+let numbercart = 0;
+function addcart() {
+  numbercart = numbercart + 1;
+  console.log(numbercart); 
+  textcart.innerHTML=numbercart;
+  
+}
+
+function sortlist() {
+    aray.sort((a, b) => {
+        const nameA = a.textContent.trim().toUpperCase();
+        const nameB = b.textContent.trim().toUpperCase();
+        if (nameA < nameB) return -1;
+        if (nameA > nameB) return 1;
+        return 0;
+    });
+
+    // Clear the current list
+    while (itemList.firstChild) {
+        itemList.removeChild(itemList.firstChild);
+    }
+
+    // Append the sorted items back to the list
+    aray.forEach(item => {
+        itemList.appendChild(item);
+    });
+}
+
+function sortlistnumber() {
+    araynumber.sort((a, b) => {
+        const nameA = parseInt( a.textContent.trim().toUpperCase());
+        const nameB = parseInt( b.textContent.trim().toUpperCase());
+        return nameA - nameB;
+    });
+
+    // Clear the current list
+    while (itemList.firstChild) {
+        itemList.removeChild(itemList.firstChild);
+    }
+    // Append the sorted items back to the list
+    araynumber.forEach(item => {
+        itemList.appendChild(item.parentNode);
+    });
+}
+// Add an input event listener to the filter input
+filterInput.addEventListener("input", filterItems);
+
+// Function to filter the list of items
+function filterItems() {
+    const filter = filterInput.value.toLowerCase(); // Convert filter text to lowercase
+
+    // Loop through the list of items
+    for (let i = 0; i < items.length; i++) {
+        const itemText = items[i].textContent.toLowerCase(); // Convert item text to lowercase
+
+        // Check if the item text contains the filter text
+        if (itemText.includes(filter)) {
+            slide[i].style.display = ""; // Show the item
+        } else {
+            slide[i].style.display = "none"; // Hide the item
+        }
+    }
+}
+
+</script>
+</body>
+</html>
